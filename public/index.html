@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JustIA — Clasificación Jurídica con IA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="header-inner">
+            <div class="logo">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    </svg>
+                </div>
+                <span class="logo-text">JustIA</span>
+                <span class="logo-badge">MVP</span>
+            </div>
+            <span class="header-tagline">Inteligencia Artificial Jurídica</span>
+        </div>
+    </header>
+
+    <!-- MAIN -->
+    <main class="main">
+
+        <!-- HERO -->
+        <section class="hero">
+            <h1 class="hero-title">Clasificación automática de<br><span class="hero-accent">textos jurídicos</span></h1>
+            <p class="hero-subtitle">Analiza y clasifica documentos legales en segundos mediante modelos de aprendizaje automático entrenados con corpus jurídico.</p>
+        </section>
+
+        <!-- CARD INPUT -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                        <polyline points="14,2 14,8 20,8"/>
+                        <line x1="16" y1="13" x2="8" y2="13"/>
+                        <line x1="16" y1="17" x2="8" y2="17"/>
+                        <polyline points="10,9 9,9 8,9"/>
+                    </svg>
+                </div>
+                <div>
+                    <h2 class="card-title">Texto Jurídico</h2>
+                    <p class="card-subtitle">Pegue o escriba el fragmento a analizar</p>
+                </div>
+            </div>
+
+            <div class="textarea-wrapper">
+                <textarea id="textoInput" placeholder="Ej: En la ciudad de Bogotá D.C., a los 15 días del mes de enero de 2024, comparecen ante el Notario Tercero del Círculo de Bogotá las partes contratantes para celebrar el presente contrato de compraventa de bien inmueble, de conformidad con los artículos 1849 y siguientes del Código Civil colombiano…" maxlength="2000"></textarea>
+                <div class="textarea-footer">
+                    <span id="validationMsg" class="validation-msg hidden"></span>
+                    <span class="textarea-count"><span id="charCount">0</span> / 2000 caracteres</span>
+                </div>
+            </div>
+
+            <div class="card-actions">
+                <button id="btnClasificar" class="btn-primary">
+                    <span class="btn-text">
+                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"/>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                        </svg>
+                        Analizar texto
+                    </span>
+                    <span class="btn-loading hidden">
+                        <span class="spinner"></span>
+                        Analizando…
+                    </span>
+                </button>
+                <button id="btnLimpiar" class="btn-secondary">Limpiar</button>
+            </div>
+        </div>
+
+        <!-- CARD RESULTADO -->
+        <div id="resultado" class="card result-card hidden">
+            <div class="card-header">
+                <div class="card-icon card-icon--green">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="9,11 12,14 22,4"/>
+                        <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+                    </svg>
+                </div>
+                <div>
+                    <h2 class="card-title">Resultado del análisis</h2>
+                    <p class="card-subtitle">Clasificación generada por el modelo</p>
+                </div>
+            </div>
+
+            <!-- ALERTA REVISION -->
+            <div id="revisionMsg" class="alert-revision hidden">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                    <line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+                </svg>
+                <div>
+                    <strong>Requiere revisión humana</strong>
+                    <p>La confianza del modelo es baja. Se recomienda revisión manual por un especialista.</p>
+                </div>
+            </div>
+
+            <!-- MÉTRICAS -->
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <span class="metric-label">Categoría detectada</span>
+                    <span id="categoria" class="category-badge"></span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-label">Nivel de confianza</span>
+                    <div class="confidence-wrapper">
+                        <span id="confianza" class="confidence-value"></span>
+                        <div class="confidence-bar-bg">
+                            <div id="confianzaBar" class="confidence-bar-fill"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DISTRIBUCIÓN -->
+            <div class="prob-section">
+                <h3 class="prob-title">Distribución de probabilidades</h3>
+                <div id="probabilidades"></div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p>JustIA &copy; 2026 — Prototipo de clasificación jurídica con IA. No constituye asesoramiento legal.</p>
+    </footer>
+
+<script src="script.js"></script>
+</body>
+</html>
