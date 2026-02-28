@@ -25,3 +25,10 @@ def clasificar_texto(data: TextoEntrada):
 
 # 🔹 Servir carpeta public completa (debe ir después de las rutas API)
 app.mount("/", StaticFiles(directory="public", html=True), name="public")
+
+if __name__ == "__main__":
+    import uvicorn
+    import os
+    
+    port = int(os.environ.get("PORT", 10000))
+    uvicorn.run("app.api:app", host="0.0.0.0", port=port)

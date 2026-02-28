@@ -5,7 +5,7 @@
 
 ## 📌 Descripción
 
-**JustIA MVP** es un sistema de clasificación automática de textos jurídicos desarrollado como producto mínimo viable (MVP).
+**JustIA MVP** es un sistema de clasificación automática de textos jurídicos desarrollado como producto mínimo viable (MVP) para entrega academica de postgrado para la asignatura de IA Aplicada al Desarrollo de Software de la Corporacion Universitaria de Asturias.
 
 Permite categorizar fragmentos de texto en cinco áreas del derecho:
 
@@ -189,6 +189,8 @@ Permite:
 - Ver la distribución de probabilidades por clase
 - Detectar casos que requieren revisión humana
 
+> 💡 Para probar el sistema con ejemplos representativos, consulte el archivo [casos_prueba.md](casos_prueba.md) con 10 textos jurídicos listos para usar.
+
 ---
 
 ## 🔌 Consumo de la API
@@ -276,17 +278,6 @@ Se seleccionó `LogisticRegression` por:
 - Interpretabilidad
 - Estabilidad
 - Adecuación para API REST
-
----
-
-## 🔮 Mejoras Futuras
-
-- [ ] Integrar embeddings semánticos (SentenceTransformers)
-- [ ] Implementar BERT en español
-- [ ] Aceptar documentos PDF con pipeline de limpieza
-- [ ] Incorporar explicabilidad avanzada (SHAP / LIME)
-- [ ] Implementar autenticación por API key
-- [ ] Despliegue en producción (Render / Docker)
 
 ---
 
