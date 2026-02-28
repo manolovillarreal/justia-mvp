@@ -49,7 +49,6 @@ justia-mvp/
 │   └── dataset_juridico_300_definitivo.json
 │
 ├── train_model.py
-├── evaluacion_modelo.py
 ├── requirements.txt
 └── README.md
 ```
@@ -93,7 +92,7 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-Si no tienes el archivo, las dependencias principales son:
+o:
 
 ```bash
 pip install fastapi uvicorn scikit-learn pandas numpy joblib matplotlib seaborn
@@ -137,22 +136,6 @@ Esto:
 - Entrena el modelo
 - Evalúa métricas
 - Guarda el modelo en `model/modelo_clasificador_justia.pkl`
-
----
-
-## 📊 Evaluación Offline
-
-Para evaluar el modelo completo sobre el dataset:
-
-```bash
-python evaluacion_modelo.py
-```
-
-El script:
-- Calcula Accuracy, Precision, Recall, F1
-- Aplica umbral de confianza
-- Muestra matriz de confusión
-- Mide tiempo de inferencia
 
 ---
 
